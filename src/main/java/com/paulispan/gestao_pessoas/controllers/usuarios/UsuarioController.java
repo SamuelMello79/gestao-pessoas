@@ -1,8 +1,8 @@
 package com.paulispan.gestao_pessoas.controllers.usuarios;
 
-import com.paulispan.gestao_pessoas.dto.request.UsuarioRequest;
-import com.paulispan.gestao_pessoas.dto.response.UsuarioResponse;
-import com.paulispan.gestao_pessoas.mappers.UsuarioMapper;
+import com.paulispan.gestao_pessoas.dto.usuarios.request.UsuarioRequest;
+import com.paulispan.gestao_pessoas.dto.usuarios.response.UsuarioResponse;
+import com.paulispan.gestao_pessoas.mappers.usuarios.UsuarioMapper;
 import com.paulispan.gestao_pessoas.models.usuarios.Usuario;
 import com.paulispan.gestao_pessoas.services.usuarios.UsuarioService;
 import lombok.RequiredArgsConstructor;

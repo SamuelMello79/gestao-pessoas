@@ -1,8 +1,8 @@
 package com.paulispan.gestao_pessoas.controllers.usuarios;
 
-import com.paulispan.gestao_pessoas.dto.request.NotificacaoRequest;
-import com.paulispan.gestao_pessoas.dto.response.NotificacaoResponse;
-import com.paulispan.gestao_pessoas.mappers.NotificacaoMapper;
+import com.paulispan.gestao_pessoas.dto.usuarios.request.NotificacaoRequest;
+import com.paulispan.gestao_pessoas.dto.usuarios.response.NotificacaoResponse;
+import com.paulispan.gestao_pessoas.mappers.usuarios.NotificacaoMapper;
 import com.paulispan.gestao_pessoas.models.usuarios.Notificacao;
 import com.paulispan.gestao_pessoas.services.usuarios.NotificaoService;
 import lombok.RequiredArgsConstructor;

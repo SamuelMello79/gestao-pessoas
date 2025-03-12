@@ -1,8 +1,8 @@
 package com.paulispan.gestao_pessoas.controllers.usuarios;
 
-import com.paulispan.gestao_pessoas.dto.request.PapelRequest;
-import com.paulispan.gestao_pessoas.dto.response.PapelResponse;
-import com.paulispan.gestao_pessoas.mappers.PapelMapper;
+import com.paulispan.gestao_pessoas.dto.usuarios.request.PapelRequest;
+import com.paulispan.gestao_pessoas.dto.usuarios.response.PapelResponse;
+import com.paulispan.gestao_pessoas.mappers.usuarios.PapelMapper;
 import com.paulispan.gestao_pessoas.models.usuarios.Papel;
 import com.paulispan.gestao_pessoas.services.usuarios.PapelService;
 import lombok.RequiredArgsConstructor;

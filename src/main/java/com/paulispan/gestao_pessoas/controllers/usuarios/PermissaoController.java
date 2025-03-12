@@ -1,8 +1,8 @@
 package com.paulispan.gestao_pessoas.controllers.usuarios;
 
-import com.paulispan.gestao_pessoas.dto.request.PermissaoRequest;
-import com.paulispan.gestao_pessoas.dto.response.PermissaoResponse;
-import com.paulispan.gestao_pessoas.mappers.PermissaoMapper;
+import com.paulispan.gestao_pessoas.dto.usuarios.request.PermissaoRequest;
+import com.paulispan.gestao_pessoas.dto.usuarios.response.PermissaoResponse;
+import com.paulispan.gestao_pessoas.mappers.usuarios.PermissaoMapper;
 import com.paulispan.gestao_pessoas.models.usuarios.Permissao;
 import com.paulispan.gestao_pessoas.services.usuarios.PermissaoService;
 import lombok.RequiredArgsConstructor;
