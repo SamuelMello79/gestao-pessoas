@@ -1,51 +1,60 @@
 package com.paulispan.gestao_pessoas.controllers.usuarios;
 
 import com.paulispan.gestao_pessoas.dto.usuarios.request.PapelRequest;
+import com.paulispan.gestao_pessoas.dto.usuarios.response.NotificacaoResponse;
 import com.paulispan.gestao_pessoas.dto.usuarios.response.PapelResponse;
-import com.paulispan.gestao_pessoas.mappers.usuarios.PapelMapper;
-import com.paulispan.gestao_pessoas.models.usuarios.Papel;
-import com.paulispan.gestao_pessoas.services.usuarios.PapelService;
-import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/papeis")
-@RequiredArgsConstructor
-public class PapelController {
-    private final PapelService papelService;
+@Tag(name = "Papel", description = "Recurso responsável pelo gerenciamento de papeis.")
+public interface PapelController {
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PapelResponse> buscarPorId(@PathVariable UUID id) {
-        return papelService.buscarPapelPorId(id)
-                .map(papel -> ResponseEntity.ok(PapelMapper.map(papel)))
-                .orElseGet(()-> ResponseEntity.notFound().build());
-    }
+    @Operation(summary = "Buscar papeis por id", description = "Método responsável por buscar papéis por id."
+            /*security = @SecurityRequirement(name = "bearerAuth")*/)
+    @ApiResponse(responseCode = "200", description = "Papel encontrado com sucesso.",
+            content = @Content(schema = @Schema(implementation = NotificacaoResponse.class)))
+    @ApiResponse(responseCode = "404", description = "Papel não encontrado.",
+            content = @Content())
+    ResponseEntity<PapelResponse> buscarPorId(@PathVariable UUID id);
 
-    @GetMapping("/all")
-    public ResponseEntity<List<PapelResponse>> buscarTodosPapeis() {
-        return ResponseEntity.ok(papelService.buscarTodosPapeis().stream()
-                .map(PapelMapper::map).toList());
-    }
+    @Operation(summary = "Buscar todos os papeis", description = "Método responsável por buscar todos os papéis."
+            /*security = @SecurityRequirement(name = "bearerAuth")*/)
+    @ApiResponse(responseCode = "200", description = "Papéis encontrados com sucesso.",
+            content = @Content(schema = @Schema(implementation = NotificacaoResponse.class)))
+    @ApiResponse(responseCode = "204", description = "Nenhum papel foi encontrado.",
+            content = @Content())
+    ResponseEntity<List<PapelResponse>> buscarTodosPapeis();
 
-    @PostMapping
-    public ResponseEntity<PapelResponse> salvarPapel(@RequestBody PapelRequest papelRequest) {
-        Papel papel = papelService.salvarUsuario(PapelMapper.map(papelRequest));
-        return ResponseEntity.ok(PapelMapper.map(papel));
-    }
+    @Operation(summary = "Salvar papel", description = "Método responsável por salvar papeis."
+            /*security = @SecurityRequirement(name = "bearerAuth")*/)
+    @ApiResponse(responseCode = "200", description = "Papel salvo com sucesso.",
+            content = @Content(schema = @Schema(implementation = NotificacaoResponse.class)))
+    @ApiResponse(responseCode = "400", description = "Não foi possivel salvar usuario, devido a informações incorretas..",
+            content = @Content())
+    ResponseEntity<PapelResponse> salvarPapel(@RequestBody PapelRequest papelRequest);
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PapelResponse> editarPapel(@PathVariable UUID id, @RequestBody PapelRequest papelRequest) {
-        Papel papel = papelService.editarPapel(id,PapelMapper.map(papelRequest));
-        return ResponseEntity.ok(PapelMapper.map(papel));
-    }
+    @Operation(summary = "Alterar papel", description = "Método responsável por alterar papeis pelo id."
+            /*security = @SecurityRequirement(name = "bearerAuth")*/)
+    @ApiResponse(responseCode = "200", description = "Papel alterado com sucesso.",
+            content = @Content(schema = @Schema(implementation = NotificacaoResponse.class)))
+    @ApiResponse(responseCode = "404", description = "Papel não encontrado.",
+            content = @Content())
+    ResponseEntity<PapelResponse> editarPapel(@PathVariable UUID id, @RequestBody PapelRequest papelRequest);
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirPapel(@PathVariable UUID id) {
-        papelService.excluirPapel(id);
-        return ResponseEntity.noContent().build();
-    }
+
+    @Operation(summary = "Excluir papel", description = "Método responsável por excluir papel por id."
+            /*security = @SecurityRequirement(name = "bearerAuth")*/)
+    @ApiResponse(responseCode = "204", description = "Papel excluido com sucesso.",
+            content = @Content(schema = @Schema(implementation = NotificacaoResponse.class)))
+    @ApiResponse(responseCode = "404", description = "Papel não encontrado.",
+            content = @Content())
+    ResponseEntity<Void> excluirPapel(@PathVariable UUID id);
 }
