@@ -9,6 +9,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class UsuarioMapper {
+
     public static Usuario map(UsuarioRequest usuarioRequest) {
         Papel papel = Papel.builder().id(usuarioRequest.papel()).build();
 

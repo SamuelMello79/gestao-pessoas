@@ -31,6 +31,12 @@ public class NotificacaoController {
                 .map(NotificacaoMapper::map).toList());
     }
 
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<List<NotificacaoResponse>> buscarTodosNotificacoPorUsuarioId(@PathVariable UUID id) {
+        return ResponseEntity.ok(notificacaoService.buscarTodasNotificacoesPorUsuarioId(id).stream()
+                .map(NotificacaoMapper::map).toList());
+    }
+
     @PostMapping
     public ResponseEntity<NotificacaoResponse> salvarNotificacao(@RequestBody NotificacaoRequest notificacaoRequest) {
         Notificacao notificacao = notificacaoService.salvarNotificacao(NotificacaoMapper.map(notificacaoRequest));

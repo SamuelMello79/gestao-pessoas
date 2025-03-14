@@ -7,6 +7,8 @@ import com.paulispan.gestao_pessoas.models.usuarios.Notificacao;
 import com.paulispan.gestao_pessoas.models.usuarios.Usuario;
 import lombok.experimental.UtilityClass;
 
+import java.time.LocalDate;
+
 @UtilityClass
 public class NotificacaoMapper {
     public static Notificacao map (NotificacaoRequest notificacaoRequest) {
@@ -15,9 +17,9 @@ public class NotificacaoMapper {
         return Notificacao.builder()
                 .usuario(usuario)
                 .mensagem(notificacaoRequest.mensagem())
-                .lida(notificacaoRequest.lida())
-                .dataCriacao(notificacaoRequest.dataCricao())
-                .dataVisualizacao(notificacaoRequest.dataVisualizacao())
+                .lida(false)
+                .dataCriacao(LocalDate.now())
+                .dataVisualizacao(null)
                 .build();
     }
 

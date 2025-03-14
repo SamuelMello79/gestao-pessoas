@@ -5,9 +5,6 @@ import java.util.UUID;
 
 public record NotificacaoRequest(
         UUID usuarioId,
-        String mensagem,
-        Boolean lida,
-        LocalDate dataCricao,
-        LocalDate dataVisualizacao
+        String mensagem
 ) {
 }
